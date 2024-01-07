@@ -1,3 +1,4 @@
+const { promiseImpl } = require('ejs')
 const mongoose = require('mongoose')
 
 const DB_URL = 'mongodb://127.0.0.1:27017/shop-app'
@@ -25,5 +26,17 @@ exports.getAllProducts = () =>{
 
     }).catch(err=>reject)
 })
-} 
+}
+
+exports.getProductByCategory = (category)=>{
+    return new Promise ((resolve, reject)=>{
+        mongoose.connect(DB_URL).then(()=>{
+            return Product.find({category:category})
+        }).then((products)=>{
+            mongoose.disconnect()
+            resolve(products)
+        }).catch(err =>reject)
+
+    })
+}
 

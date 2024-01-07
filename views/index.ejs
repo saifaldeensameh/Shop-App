@@ -4,6 +4,18 @@
 
 
 <div class="container "> 
+    <form action="/"method='get'>
+        <select name="category" id="form-control">
+            <option value="all">All </option>
+            <option value="animal">Animals</option>
+            <option value="phones">Phones</option>
+            <option value="computers">Computer</option>
+        </select>
+        <input type="submit" class="btn btn-primary" value="Filter">
+    </form>
+
+
+
     <div class = "row">
         <% for (let product of products) {   %>
         <div class="col col-12 col-md-6 col-lg-4 col-xl-3"> 
