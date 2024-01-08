@@ -3,6 +3,12 @@
 <%- include("parts/navbar")%>
 
 <div class="container">
+    <% if (!product) {%>
+        <div class="alert alert-danger">
+            <h1>Sorry No Product found</h1>
+
+        </div>
+    <% }else{ %>    
     <div class="row">   
         <div class="col col-12 col-md-6 ">
             <img src="../<%= product.image %>" alt="">
@@ -19,6 +25,7 @@
             <p><%= product.category %></p>
         </div>
     </div>
+    <% } %>
 </div>
 
 
