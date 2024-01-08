@@ -40,3 +40,14 @@ exports.getProductByCategory = (category)=>{
     })
 }
 
+exports.getProductByID = (id)=>{
+    return new Promise ((resolve, reject)=>{
+        mongoose.connect(DB_URL).then(()=>{
+            return Product.findOne({'_id':id})
+        }).then((products)=>{
+            mongoose.disconnect()
+            resolve(products)
+        }).catch(err =>reject)
+
+    })
+}

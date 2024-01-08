@@ -1,6 +1,7 @@
 const express = require('express') // use express to deal with server 
 const path = require('path') // use path to work despite using linux / or windows  \ 
 const homeRouter = require('./routes/home.route')
+const productRouter = require('./routes/product.route')
 
 const app = express() // create object from express
 
@@ -11,7 +12,7 @@ app.set('view engine','ejs')
 app.set('views','views') //default
 
 app.use('/',homeRouter)
-
+app.use('/product',productRouter)
 
 
 // listen server on port 3000
