@@ -15,4 +15,5 @@ router.post('/login',
             bodyParser.urlencoded({extended:true}),
             authController.postLogin)
 
+router.all('/logout',authController.logout)            
 module.exports = router

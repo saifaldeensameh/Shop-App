@@ -1,6 +1,7 @@
 const { Db } = require("mongodb");
 const mongoose  = require("mongoose");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { getProductByCategory } = require("./products.model");
 
 const DB_URL = 'mongodb://127.0.0.1:27017/shop-app'
 
@@ -28,7 +29,6 @@ exports.createNewUser = (username,email,password)=>{
             else {
         return bcrypt.hash(password,10)
         } 
-           
         }).then((hashedpassword)=>{
             let user = new User({
             username:username,
@@ -43,5 +43,24 @@ exports.createNewUser = (username,email,password)=>{
             mongoose.disconnect()
             reject(error)
         } )
+    })
+}
+
+exports.loginuser = (email,password)=>{
+    return new Promise((resolve, reject) => {
+        mongoose.connect(DB_URL).then(()=>{
+            return User.findOne({email:email})
+        }).then((founduser)=>{
+            loginuser = founduser
+            if(!loginuser) throw new Error ('email not correct')
+            else return bcrypt.compare(password,loginuser.password)
+        }).then((ismatch)=>{
+            if(!ismatch) throw new Error('password not correct')
+            else resolve(loginuser._id)
+        }).catch(err=>{
+            reject(err.message)
+        }).finally(()=>{
+            mongoose.disconnect()
+        })
     })
 }

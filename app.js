@@ -3,11 +3,25 @@ const path = require('path') // use path to work despite using linux / or window
 const homeRouter = require('./routes/home.route')
 const productRouter = require('./routes/product.route')
 const authrouter = require('./routes/auth.route')
+const session = require('express-session')
+const sessionstore = require('connect-mongodb-session')(session)
+
 
 const app = express() // create object from express
 
 app.use(express.static(path.join(__dirname,"assets"))) // identify the static files in asset
 app.use(express.static(path.join(__dirname,"images")))
+
+const STORE = new sessionstore({
+    uri: 'mongodb://127.0.0.1:27017/shop-app',
+    collection: 'sessions'
+})
+app.use(session({
+    secret: 'this is my secret secret to hash express sessions ....',
+    saveUninitialized: false,
+    store:STORE
+}))
+
 // identify ejs to make templates to work on in html
 app.set('view engine','ejs')
 app.set('views','views') //default
