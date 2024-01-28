@@ -20,6 +20,10 @@
                  
                   <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+              <br>
+              <% if (authError){ %>
+              <p class="alert alert-danger"><%= authError %></p>
+              <% } %>
             </div>
           </div>
         </div>

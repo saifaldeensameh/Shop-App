@@ -16,17 +16,20 @@ exports.postSignup = (req,res,next)=>{
 }
 
 exports.getLogin = (req,res,next)=>{
-    res.render('login')
+    res.render('login',{
+        authError: req.flash('authError')[0]
+    });
 
 }
 
 exports.postLogin = (req,res,next)=>{
     authmodel.loginuser(req.body.email,req.body.password)
     .then((id)=>{
-        console.log('hahaahhha',id)
         req.session.useId = id 
         res.redirect('/')})
-    .catch((error)=>{res.render('login')
+    .catch((error)=>{
+        req.flash('authError',error)
+        res.redirect('login')
     })
 }
 

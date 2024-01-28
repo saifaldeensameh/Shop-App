@@ -5,7 +5,7 @@ const productRouter = require('./routes/product.route')
 const authrouter = require('./routes/auth.route')
 const session = require('express-session')
 const sessionstore = require('connect-mongodb-session')(session)
-
+const flash = require('connect-flash')
 
 const app = express() // create object from express
 
@@ -22,6 +22,7 @@ app.use(session({
     store:STORE
 }))
 
+app.use(flash())
 // identify ejs to make templates to work on in html
 app.set('view engine','ejs')
 app.set('views','views') //default
