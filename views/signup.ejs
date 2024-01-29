@@ -16,42 +16,58 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example1c" class="form-control" name = 'username'>
                         <label class="form-label" for="form3Example1c">Your Name</label>
+                        <input type="text" id="form3Example1c" class="form-control" name = 'username'>
+                        <% let usernameerror = ValidationErrors.find(error => error.path === 'username') %>
+                        <% if (usernameerror) {  %>
+                        <p class="alert alert-danger"><%= usernameerror.msg %></p>
+                        <% } %>  
                       </div>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example3c">Your Email</label> 
                         <input type="email" id="form3Example3c" class="form-control" name = 'email' />
-                        <label class="form-label" for="form3Example3c">Your Email</label>
+                        <% let emailerror = ValidationErrors.find(error => error.path === 'email') %>
+                        <% if (emailerror) {  %>
+                        <p class="alert alert-danger"><%= emailerror.msg %></p>
+                        <% } %>  
                       </div>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4c" class="form-control" name = 'password'/>
                         <label class="form-label" for="form3Example4c">Password</label>
+                        <input type="password" id="form3Example4c" class="form-control" name = 'password'/>
+                        <% let passerror = ValidationErrors.find(error => error.path === 'password') %>
+                        <% if (passerror) {  %>
+                        <p class="alert alert-danger"><%= passerror.msg %></p>
+                        <% } %>  
                       </div>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4cd" class="form-control" name = 'confirm_password'/>
                         <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                        <input type="password" id="form3Example4cd" class="form-control" name = 'confirm_password'/>
+                        <% let confirmerror = ValidationErrors.find(error => error.path === 'confirm_password') %>
+                        <% if (confirmerror) {  %>
+                        <p class="alert alert-danger"><%= confirmerror.msg %></p>
+                        <% } %>  
                       </div>
                     </div>
   
   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <input type="submit" class="btn btn-primary" value="Filter">
+                      <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
   
                   </form>
-  
+                  
                 </div>
                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
   
