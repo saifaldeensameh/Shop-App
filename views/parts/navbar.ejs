@@ -9,13 +9,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
+          <% if (isUser) { %>
+          <li class="nav-item"> 
             <a class="nav-link" href="/cart">Cart</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/orders">Orders</a>
           </li>
-          
+          <li><form action="/logout" method="post"><input class="nav-link" href="#" type="submit" value="Logout"></form></li>
+
+          <% } else{ %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Account
@@ -24,8 +27,9 @@
               <li><a class="dropdown-item" href="/login">Login</a></li>
               <li><a class="dropdown-item" href="/signup">Signup</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><form action="/logout" method="post"><input class="dropdown-item" href="#" type="submit" value="Logout"></form></li>
             </ul>
+            <% } %>
+
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

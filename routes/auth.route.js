@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const bodyParser = require('body-parser')
 const check = require('express-validator').check
-
+const authGruard = require('./guards/auth.guard')
 const authController = require('../controllers/auth.controller')
 
-router.get('/signup',authController.getSignup)
 
-router.post('/signup',
+router.get('/signup',authGruard.isnotauth,authController.getSignup)
+
+router.post('/signup',authGruard.isnotauth,
             bodyParser.urlencoded({extended: true}),
             check('username').not().isEmpty().withMessage("Username can't be Empty"),
             check('email').not().isEmpty().withMessage("Email can't be Empty")
@@ -22,13 +23,13 @@ router.post('/signup',
             }),
             authController.postSignup)
 
-router.get('/login',authController.getLogin)            
+router.get('/login',authGruard.isnotauth,authController.getLogin)            
 
-router.post('/login',
+router.post('/login',authGruard.isnotauth,
             bodyParser.urlencoded({extended:true}),
             check('email').not().isEmpty().withMessage("Email can't be Empty"),
             check('password').isLength({min:6}).withMessage('Password Length Should > 6 characters'),
             authController.postLogin)
 
-router.all('/logout',authController.logout)            
+router.all('/logout',authGruard.isauth,authController.logout)            
 module.exports = router

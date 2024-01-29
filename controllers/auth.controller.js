@@ -3,7 +3,9 @@ const validationresult = require('express-validator').validationResult
 exports.getSignup = (req,res,next)=>{
     
     res.render('signup',{
-        ValidationErrors: req.flash('ValidationErrors')
+        ValidationErrors: req.flash('ValidationErrors'),
+        isUser:false
+
     })
 
 }
@@ -27,7 +29,8 @@ exports.getLogin = (req,res,next)=>{
     
     res.render('login',{
         authError: req.flash('authError')[0],
-        loginValidationErrors: req.flash('loginValidationErrors')
+        loginValidationErrors: req.flash('loginValidationErrors'),
+        isUser:false
     });
 
 }
@@ -37,7 +40,7 @@ exports.postLogin = (req,res,next)=>{
     
     authmodel.loginuser(req.body.email,req.body.password)
     .then((id)=>{
-        req.session.useId = id 
+        req.session.userId = id 
         res.redirect('/')})
     .catch((error)=>{
         req.flash('authError',error)

@@ -15,7 +15,8 @@ exports.getHome = (req,res,next) => {
 
     productpromise.then((products)=>{
         res.render('index',{
-            products: products
+            products: products,
+            isUser: req.session.userId
         })
     })
 
