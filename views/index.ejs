@@ -13,7 +13,11 @@
         </select>
         <input type="submit" class="btn btn-primary" value="Filter">
     </form>
-
+    <% if (ValidationErrors){ %>
+    <p class="alert alert-danger">
+        <%= ValidationErrors.msg  %>
+    </p>
+    <% } %>
     <% if (products.length === 0) {%>
         <div class="alert alert-danger">
             <h1>Sorry No Products found</h1>
@@ -36,6 +40,10 @@
                     <p class="card-text">Description:  <%= product.description  %></p>
                 <form action="/cart" method="post">
                     <input type="number"name = "amount" class="form-control">
+                    <input type="hidden"name = 'name'value='<%= product.name %>'>
+                    <input type="hidden"name = 'price'value='<%= product.price %>'>
+                    <input type="hidden"name = 'productId'value='<%= product._id %>'>
+                    <input type="hidden"name = 'redirectto'value='/'>
                     <input type="submit"value= "Add to Cart" class="btn btn-primary">
                 </form>
                 </div>

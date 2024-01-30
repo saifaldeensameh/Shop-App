@@ -3,6 +3,7 @@ const path = require('path') // use path to work despite using linux / or window
 const homeRouter = require('./routes/home.route')
 const productRouter = require('./routes/product.route')
 const authrouter = require('./routes/auth.route')
+const cartRouter = require('./routes/cart.route')
 const session = require('express-session')
 const sessionstore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash')
@@ -30,6 +31,7 @@ app.set('views','views') //default
 app.use('/',homeRouter)
 app.use('/',authrouter)
 app.use('/product',productRouter)
+app.use('/cart',cartRouter)
 
 
 // listen server on port 3000
