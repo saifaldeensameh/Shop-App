@@ -10,7 +10,10 @@ const UserSchema = mongoose.Schema({
     username: String,
     email: String,
     password: String,
-   
+    isAdmin:{
+        type: Boolean,
+        default: false
+    } 
 })
 
 const User = mongoose.model('user',UserSchema)
@@ -56,7 +59,8 @@ exports.loginuser = (email,password)=>{
             else return bcrypt.compare(password,loginuser.password)
         }).then((ismatch)=>{
             if(!ismatch) throw new Error('password not correct')
-            else resolve(loginuser._id)
+            else resolve({
+                id: loginuser._id, isAdmin: loginuser.isAdmin})
         }).catch(err=>{
             reject(err.message)
         }).finally(()=>{

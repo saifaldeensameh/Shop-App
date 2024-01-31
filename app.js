@@ -4,6 +4,7 @@ const homeRouter = require('./routes/home.route')
 const productRouter = require('./routes/product.route')
 const authrouter = require('./routes/auth.route')
 const cartRouter = require('./routes/cart.route')
+const adminRouter = require('./routes/admin.route')
 const session = require('express-session')
 const sessionstore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash')
@@ -32,6 +33,7 @@ app.use('/',homeRouter)
 app.use('/',authrouter)
 app.use('/product',productRouter)
 app.use('/cart',cartRouter)
+app.use('/admin',adminRouter)
 
 
 // listen server on port 3000

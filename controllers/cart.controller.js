@@ -6,7 +6,8 @@ exports.getCart = (req,res,next) =>{
     cartModel.getItemtoCartbyUser(req.session.userId).then((items)=>{
         res.render('cart',{
             items:items,
-            isUser:true
+            isUser:true,
+            isAdmin:req.session.isAdmin
         })
     })
 } 

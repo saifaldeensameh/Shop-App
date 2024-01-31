@@ -39,8 +39,9 @@ exports.postLogin = (req,res,next)=>{
     if (validationresult(req).isEmpty()){
     
     authmodel.loginuser(req.body.email,req.body.password)
-    .then((id)=>{
-        req.session.userId = id 
+    .then((result)=>{
+        req.session.userId = result.id 
+        req.session.isAdmin = result.isAdmin
         res.redirect('/')})
     .catch((error)=>{
         req.flash('authError',error)
