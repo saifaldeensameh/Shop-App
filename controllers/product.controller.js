@@ -25,7 +25,9 @@ exports.getfirstProduct = (req,res,next)=>{
         res.render('product',{
             product:product,
             isUser:req.session.isUser,
-            isAdmin:req.session.isAdmin
+            isAdmin:req.session.isAdmin,
+            pageTitle:'Product',
+
 
         })
     })

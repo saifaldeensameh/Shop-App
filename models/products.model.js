@@ -64,3 +64,15 @@ exports.getfirstProduct = (id)=>{
     })
 }
 
+exports.addNewProduct = (data)=>{
+    return new Promise((resolve, reject) => {
+        // return reject('err')
+        mongoose.connect(DB_URL).then(()=>{
+            let product = new Product(data)
+            return product.save()
+        }).then(()=>{
+            resolve()
+        }).catch(err=>reject)
+        .finally(()=>{mongoose.disconnect})
+    })
+}

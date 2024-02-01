@@ -20,6 +20,7 @@ exports.getHome = (req,res,next) => {
             isUser: req.session.userId,
             isAdmin: req.session.isAdmin,
             ValidationErrors: req.flash('ValidationErrors')[0],
+            pageTitle:'Home',
         })
     })
 

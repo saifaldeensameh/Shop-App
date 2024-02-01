@@ -7,14 +7,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link <%= pageTitle === 'Home' ? 'active': ''  %>" aria-current="page" href="/">Home</a>
           </li>
           <% if (isUser) { %>
           <li class="nav-item"> 
-            <a class="nav-link" href="/cart">Cart</a>
+            <a class="nav-link <%= pageTitle === 'Cart' ? 'active': ''  %>" href="/cart">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/orders">Orders</a>
+            <a class="nav-link <%= pageTitle === 'Orders' ? 'active': ''  %>" href="/orders">Orders</a>
           </li>
           <li><form action="/logout" method="post"><input class="nav-link" href="#" type="submit" value="Logout"></form></li>
 
@@ -24,8 +24,8 @@
               Account
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/login">Login</a></li>
-              <li><a class="dropdown-item" href="/signup">Signup</a></li>
+              <li><a class="dropdown-item <%= pageTitle === 'Login' ? 'active': ''  %>" href="/login">Login</a></li>
+              <li><a class="dropdown-item <%= pageTitle === 'Signup' ? 'active': ''  %>" href="/signup">Signup</a></li>
               <li><hr class="dropdown-divider"></li>
             </ul>
             <% } %>
@@ -37,7 +37,7 @@
               Admin
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/admin/add">Add Product</a></li>
+              <li><a class="dropdown-item " href="/admin/add">Add Product</a></li>
               <li><a class="dropdown-item" href="/admin/orders">Manage Orders</a></li>
             
             </ul>

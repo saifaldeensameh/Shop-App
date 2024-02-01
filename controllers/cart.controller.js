@@ -7,7 +7,9 @@ exports.getCart = (req,res,next) =>{
         res.render('cart',{
             items:items,
             isUser:true,
-            isAdmin:req.session.isAdmin
+            isAdmin:req.session.isAdmin,
+            pageTitle:'Cart',
+
         })
     })
 } 

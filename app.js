@@ -35,6 +35,39 @@ app.use('/product',productRouter)
 app.use('/cart',cartRouter)
 app.use('/admin',adminRouter)
 
+app.get('/error',(req,res,next)=>{
+    res.status(500)
+    res.render('errors.ejs',{
+        isUser: req.session.userId,
+        isAdmin: req.session.isAdmin,
+        pageTitle:'Error',
+
+    })
+})
+
+app.get('/not-admin',(req,res,next)=>{
+    res.status(403)
+    res.render('not-admin.ejs',{
+        isUser: req.session.userId,
+        isAdmin: false,
+        pageTitle:'Not Admin',
+
+    })
+})
+
+app.use((error,req,res,next)=>{
+    res.redirect('/error')
+})
+
+app.user((req,res,next)=>{
+    res.status(404)
+    res.render('page-not-found.ejs',{
+        isUser: req.session.userId,
+        isAdmin: false,
+        pageTitle:'Not Found',
+
+    })
+})
 
 // listen server on port 3000
 app.listen(3000,(err)=>{
